@@ -1,0 +1,47 @@
+@import '../../styles/_colors'
+.welcome_tag
+    padding: 20px
+    background: black
+    border-radius: 10px
+    justify-content: flex-start !important
+
+    @supports ( backdrop-filter: blur(100px))
+        background: rgba(16, 185, 129, 0.05)
+        backdrop-filter: blur(100px)
+        color: white
+
+    svg
+        width: 70px
+        height: 70px
+        margin-right: 20px
+
+    .text_content
+        text-align: left
+        align-items: flex-start !important
+        justify-content: flex-start !important
+
+        h4
+            font-size: 20px
+            text-align: left
+        span
+            color: $primary-color
+        p
+            font-size: 16px
+
+@media (max-width: 620px)
+    .welcome_tag
+        flex-direction: column
+        align-items: flex-start !important
+
+        svg
+            width: 70px
+            height: 70px
+            margin-right: 0
+            margin-bottom: 20px
+
+@media (max-width: 426px)
+    .welcome_tag
+        padding: 20px
+        svg
+            width: 40px
+            height: 40px

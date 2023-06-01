@@ -1,0 +1,15 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "../../"
+    schedule:
+      interval: "daily"
+    target-branch: "main"
+    labels:
+      - "npm"
+      - "dependencies"
+    reviewers:
+      - "justinepeterson"
+    commit-message:
+      prefix: "npm dev"
+      prefix-development: "dev"

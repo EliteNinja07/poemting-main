@@ -1,0 +1,17 @@
+@import './../../styles/_colors'
+
+.card
+    justify-content: space-between !important
+    padding: 16px
+    background: linear-gradient(91.65deg, #ECFDF5 35.78%, #FDFAEC 76.5%)
+    border: 1px solid $primary-border
+    border-radius: 20px
+    &:hover
+        background-position: 10px
+        background: linear-gradient(-91.65deg, #ECFDF5 35.78%, #FDFAEC 76.5%)
+    &.active
+        outline: solid 1px $secondary-color
+    &.disabled
+        opacity: .7
+        &:hover
+            background: linear-gradient(91.65deg, #ECFDF5 35.78%, #FDFAEC 76.5%)

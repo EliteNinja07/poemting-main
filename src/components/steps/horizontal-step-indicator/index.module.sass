@@ -1,0 +1,84 @@
+@import './../../../styles/_colors'
+
+.step
+    display: flex
+    align-items: center
+    position: relative
+    &_count
+        padding: 20px
+        border: 1px solid $primary-border
+        color: $primary-border
+        font-size: 20px
+        font-weight: bold
+        width: 20px
+        height: 20px
+        border-radius: 100%
+        display: flex
+        align-items: center
+        justify-content: center
+
+    &_line:not(:first-child)
+        &::after
+            content: ""
+            position: absolute
+            width: calc( 100% - 60px )
+            height: 2px
+            margin-left: 15px
+            background-color: $primary-border
+
+    &.active
+        & > svg
+            color: $primary-color
+            // background-color: white
+            height: 60px
+            width: 60px
+
+    &_count.active
+        border: 1px solid $primary-color
+        background-color: white
+        color: $primary-color
+
+    &_line.active
+        background-color: $primary-color
+
+@media screen and ( max-width: 500px  )
+    .step
+        display: flex
+        align-items: center
+        position: relative
+        &_count
+            padding: 15px
+            border: 1px solid $primary-border
+            color: $primary-border
+            font-size: 15px
+            font-weight: bold
+            width: 20px
+            height: 20px
+            border-radius: 100%
+            display: flex
+            align-items: center
+            justify-content: center
+
+        &_line:not(:first-child)
+            &::after
+                content: ""
+                position: absolute
+                width: calc( 100% - 40px )
+                height: 2px
+                margin-left: 10px
+                background-color: $primary-border
+
+        &.active
+            & > svg
+                color: $primary-color
+                // background-color: white
+                height: 40px
+                width: 40px
+
+        &_count.active
+            border: 1px solid $primary-color
+            background-color: white
+            color: $primary-color
+
+        &_line.active
+            background-color: $primary-color

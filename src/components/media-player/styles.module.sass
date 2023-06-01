@@ -1,0 +1,229 @@
+@import '../../styles/_colors'
+
+@mixin sliderRunnableTrack($background)
+    background: $background
+
+@mixin track()
+    width: 100%
+    cursor: pointer
+    background: transparent
+    border-color: transparent
+    color: transparent
+
+@mixin sliderThumb($background, $marginTop)
+    -webkit-appearance: none
+    height: 10px
+    width: 10px
+    position: relative
+    z-index: 3
+    border-radius: 50%
+    background: $background
+    cursor: pointer
+    margin-top: $marginTop
+
+@mixin rangeTrack($background, $marginTop, $height)
+    width: 100%
+    height: $height
+    cursor: pointer
+    margin-top: $marginTop
+    background: $background
+    border-radius: 5px
+
+@mixin fillLower($background)
+    background: $background
+
+.bar
+    &.duration__bar
+        width: 100%
+        border-radius: 5px
+        input
+            width: 100%
+            border-radius: 5px
+            position: relative
+            transition: .05s
+            &::before, &::after
+                position: absolute
+                content: ""
+                top: -2px
+                left: 0
+                z-index: 1
+                cursor: pointer
+                height: 5px
+                border-radius: 5px
+                transition: .05s
+            &::before
+                z-index: 2
+                width: calc( var(--seek-before-width) + 2.5px )
+                background-color: #34D399
+                cursor: pointer
+            &::after
+                left: 10px
+                width: calc( var(--buffer-before-width) - 10px )
+                background-color: $gray-100
+                // opacity: 0
+            &:hover::before
+                background-color: $primary-color
+            &:hover::after
+                opacity: 1
+
+input[type=range]
+    -webkit-appearance: none
+    width: calc( 100% - 90px )
+    background: transparent
+    border-radius: 5px
+input[type=range]
+    -webkit-appearance: none
+    width: 100%
+    background: transparent
+
+input[type=range]::-webkit-slider-thumb
+    -webkit-appearance: none
+
+input[type=range]:focus
+    outline: none
+
+input[type=range]::-ms-track
+    @include track()
+
+input[type=range]::-webkit-slider-thumb
+    @include sliderThumb(#34D399, -3px)
+    transition: 0.4s all ease-out
+
+input[type=range]:active::-webkit-slider-thumb
+    @include sliderThumb($primary-color, -3px)
+
+/* All the same stuff for Firefox */
+input[type=range]::-moz-range-thumb
+    @include sliderThumb(#34D399, -3px)
+    transition: 0.4s all ease-out
+
+/* All the same stuff for IE */
+input[type=range]::-ms-thumb
+    @include sliderThumb(#34D399, -3px)
+    transition: 0.4s all ease-out
+
+input[type=range]::-webkit-slider-runnable-track
+    @include rangeTrack($gray-100, -2px, 5px)
+
+input[type=range]:focus::-webkit-slider-runnable-track
+    @include sliderRunnableTrack($gray-300)
+
+input[type=range]::-moz-range-track
+    @include rangeTrack($primary-color-100, -2px, 5px)
+
+input[type=range]::-ms-track
+    @include rangeTrack($primary-color-100, -2px, 5px)
+
+input[type=range]::-ms-fill-lower
+    @include fillLower($primary-color-100)
+
+input[type=range]:focus::-ms-fill-lower
+    @include fillLower($primary-color-100)
+
+input[type=range]::-ms-fill-upper
+    @include fillLower($primary-color-100)
+
+input[type=range]:focus::-ms-fill-upper
+    @include fillLower($primary-color-100)
+
+button
+    display: flex
+    cursor: pointer
+    min-height: 30px
+    min-width: 30px
+    justify-content: center
+    align-items: center
+    .buffer__audio
+        gap: .25rem
+        span
+            height: 7px
+            width: 7px
+            background: $gray-300
+            border-radius: 50%
+            opacity: 1
+            animation: buffering .8s ease-in 0s infinite forwards
+            &:nth-child(2)
+                animation-delay: .15s
+            &:nth-child(3)
+                animation-delay: .3s
+
+.duration
+    font-size: .9rem
+    color: $gray-500
+
+@keyframes buffering
+    0%
+        opacity: .3
+    50%
+        opacity: 1
+    100%
+        opacity: 0
+
+.video-player
+    width: 100%
+    position: relative
+video
+    width: 100%
+    aspect-ratio: 16 / 9
+    background: $gray-100
+
+.controls
+    position: absolute
+    top: 0
+    z-index: 100
+    left: 0
+    width: 100%
+    height: 100%
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
+    background-color: transparent
+    transition: all .2s ease
+    -webkit-transition: all .2s ease-out
+    -moz-transition: all .2s ease-out
+    -o-transition: all .2s ease-out
+    cursor: pointer
+    &:hover
+        background-color: rgba(0, 0, 0, .1)
+        .more-controls
+            opacity: 1
+        .center-controls
+            opacity: 1
+    button
+        background: transparent
+        border: none
+        color: white
+    .more-controls
+        cursor: default
+        bottom: 0
+        opacity: 0
+        height: 100px
+        width: 100%
+        position: absolute
+        display: flex
+        justify-content: flex-end
+        align-items: flex-end
+        background: linear-gradient(180deg, rgba(255,255,255,0) 0, rgba(0,0,0,.7) 100%)
+        transition: .2s
+        &.not-playing
+            opacity: 1
+        .more-controls-container
+            width: 100%
+            position: absolute
+            bottom: 0
+            left: 0
+            padding: .5rem
+            color: white
+    .center-controls
+        opacity: 0
+        transition: .2s
+        &.not-playing
+            opacity: 1
+        button
+            background: white
+            background: radial-gradient(circle, rgba(255,255,255,1) 0%, #ffffff 40%, rgba(0, 0, 0, 0) 60%, rgba(0,0,0,0) 100%)
+            border-radius: 50%
+            padding: 0
+            margin: 0
+            border: none
