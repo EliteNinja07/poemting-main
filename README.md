@@ -1,1 +1,1 @@
-![YOLO](https://img.shields.io/badge/-YOLO-success)
+THIS IS OPENAI EXAMPLE
