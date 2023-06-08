@@ -1,0 +1,18 @@
+name: Pull Request Badge
+
+on:
+  pull_request:
+    types: [opened, closed, reopened]
+
+jobs:
+  badge:
+    runs-on: windows
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up PR badge
+        uses: peter-evans/create-pull-request-comment@v3.5.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          comment: |
+            ![PRs](https://img.shields.io/github/issues-pr-raw/eliteninja07/poemting-main?color=green&label=Open%20PRs&logo=github)
+            ![Closed PRs](https://img.shields.io/github/issues-pr-closed-raw/eliteninja07/poemting-main?color=red&label=Closed%20PRs&logo=github)
